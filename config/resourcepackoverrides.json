@@ -1,0 +1,29 @@
+{
+	"schema_version": 1,
+  "failed_reloads_per_session": 5,
+
+	"default_packs": [
+	"vanilla",
+	"mod_resources",
+	"Moonlight Mods Dynamic Assets",
+	"file/Create Computers 1.2.1 - 1.20.1.zip",
+	"file/moromoro's_create_style_prettypipes.zip",
+	"file/CreateSophisticatedBackpacks.zip",
+	"file/CABIN",
+	"file/CABIN Resource Pack Overrides"
+  ],
+	"pack_overrides": {
+		"file/CABIN": {
+			"required": true
+		},
+		"programer_art": {
+			"hidden": true
+		},
+		"file/moromoro's_create_style_prettypipes.zip": {
+			"force_compatible": true
+		},
+		"file/CreateSophisticatedBackpacks.zip": {
+			"force_compatible": true
+		}
+	}
+}
