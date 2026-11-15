@@ -42,8 +42,8 @@ ao:true
 prioritizeChunkUpdates:0
 biomeBlendRadius:2
 renderClouds:"true"
-resourcePacks:["vanilla","mod_resources","Moonlight Mods Dynamic Assets","file/Create Computers 1.2.1 - 1.20.1.zip","file/moromoro\u0027s_create_style_prettypipes.zip","file/CreateSophisticatedBackpacks.zip","file/CABIN","file/CABIN Resource Pack Overrides","builtin/create_repair_asset_overrides"]
-incompatibleResourcePacks:[]
+resourcePacks:["vanilla","mod_resources","Moonlight Mods Dynamic Assets","file/Create Computers 1.2.1 - 1.20.1.zip","file/moromoro\u0027s_create_style_prettypipes.zip","file/CreateSophisticatedBackpacks.zip","file/CABIN","file/CABIN Resource Pack Overrides","builtin/create_repair_asset_overrides","file/Slightly-Improved-Font-1.1.5.zip"]
+incompatibleResourcePacks:["file/Slightly-Improved-Font-1.1.5.zip"]
 lastServer:localhost:25565
 lang:en_us
 soundDevice:""
