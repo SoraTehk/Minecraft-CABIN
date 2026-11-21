@@ -1,0 +1,40 @@
+# A modpack repo is Prism's <instance>/minecraft folder. Base settings (options.txt, local/, ...) are tracked;
+# ignored are game output, caches and files tied to one PC.
+
+# Game output
+/logs/
+/crash-reports/
+/screenshots/
+/saves/
+/server-resource-packs/
+
+/_server/logs/
+/_server/crash-reports/
+
+# Caches the game rebuilds by itself
+/.mixin.out/
+/modernfix/
+/.fabric/
+/fancymenu_data/
+
+/_server/modernfix/
+
+# Tied to one PC
+/config/embeddium-fingerprint.json
+
+# What a player's games leave behind, per world or server: muffled sounds (Extreme Sound Muffler), the minimap
+# (FTB Chunks) and the server list's backup
+/ESM/
+/local/ftbchunks/data/
+/servers.dat_old
+
+# Written by Prism at every launch (the instance icon, for the game window)
+/icon.png
+
+# Files copied or symlinked from the client
+/_server/config/
+/_server/defaultconfigs/
+/_server/kubejs
+/_server/ldlib/
+/_server/libraries/
+/_server/mods/

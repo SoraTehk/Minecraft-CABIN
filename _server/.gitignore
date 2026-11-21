@@ -1,0 +1,7 @@
+# Files copied or symlinked from the client
+config/
+defaultconfigs/
+kubejs
+ldlib/
+libraries/
+mods/

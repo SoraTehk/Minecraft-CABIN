@@ -1,0 +1,118 @@
+###
+# REMEMBER:
+#   Escape \ and : in your Java path on Windows with another \
+#   Example:
+#     From: C:\Program Files\Eclipse Adoptium\jdk-17.0.9.9-hotspot\bin\java.exe
+#     To:   C\:\\Program Files\\Eclipse Adoptium\\jdk-17.0.9.9-hotspot\\bin\\java.exe
+#   More on escape characters at https://en.wikipedia.org/wiki/Escape_character
+#
+# WAIT_FOR_USER_INPUT true/false allows you to enable/disable user confirmation upon
+#   graceful script ending.
+# RESTART true/false allows you to enable/disable automatically restarting the server
+#   should it crash.
+# JAVA points towards the Java executable/binary the server should use for running. Default is `java`, so it
+#   points towards the system-default, if you have one. Set this to an absolute path, as per the example above
+#   in the "REMEMBER"-part, if you want to force the server to use a different Java installation/version.
+#   When setting a custom path, set SKIP_JAVA_CHECK to true.
+# JAVA_ARGS are arguments to pass to the JVM / your server. Typical args are 'Xmx4G Xms4g'. Arguments in this
+#   variable are also written to the 'user_jvm_args.txt' when using modloaders such as Forge.
+#   More information at https://minecraft.fandom.com/wiki/Tutorials/Setting_up_a_server
+#   I recommend you read this page at least once.
+# ADDITIONAL_ARGS are, as the name implies, additional arguments to pass to the server. These arguments are not
+#   written to any file, they are directly used in the command to run the server.
+# SKIP_JAVA_CHECK true/false allows you to disable/enable the compatibility check
+#   of your Minecraft version and the provided Java version, as well as the automatic
+#   installation of a compatible Java version, should JAVA be set to 'java'.
+#   Note - the Java version is still READ even when this is 'true'. Skipping the check
+#   skips comparing and installing, not looking: Forge servers need to know whether the
+#   Java in use is 24 or newer, because Java 24 removed Security Manager support and the
+#   ServerStarterJar cannot be used there. If the version cannot be read at all, the
+#   script assumes the newer behaviour and installs Forge itself, which is safe on every
+#   Java version.
+# JDK_VENDOR is for the automatic installation of a JDK compatible with the Minecraft
+#   version of your server pack. For an extensive list of available vendors, check out
+#   https://github.com/Jabba-Team/index/blob/main/index.json
+#   Note - For the installation to take place:
+#   - SKIP_JAVA_CHECK must be set to 'false'
+#   - JAVA be set to 'java'
+#   - No 'java' command be available OR
+#   - The available Java version behind 'java' be incompatible with your Minecraft version.
+# JABBA_INSTALL_VERSION has no effect on the installation of Jabba when using PowerShell.
+# MINECRAFT_VERSION is tightly coupled with the modloader version. Be careful when changing this, as the new
+#   new version you set may not be compatible with the modloader and modloader version combination.
+# MODLOADER and MODLOADER_VERSION same thing as with MINECRAFT_VERSION. Changing any of these three values may
+#   have unforseen consequences. Well, I say unforseen, it mostly causes the server to straight up not start,
+#   because of incompatibilities. Be very careful when changing these!
+# SERVERSTARTERJAR_FORCE_FETCH true/false allows you to enable/disable the force-refreshing of the server.jar
+#   when using Forge or NeoForge as your modloader. Force-refreshing means the file is replaced with a freshly
+#   downloaded one every time you run the start scripts.
+# SERVERSTARTERJAR_VERSION allows you to manually set the version of the server.jar downloaded by the scripts.
+#   If you want to always use the latest version, set this to exactly "latest". For a specific version, see
+#   https://github.com/neoforged/ServerStarterJar/releases and use the tags on the left as the version,
+#   e.g. 0.1.24 or 0.1.25. When setting a specific version, make sure the release you pick actually has a server.jar
+#   available for download. When the download fails with the "latest"-setting, then pick a specific one and/or
+#   contact the devs of the ServerStarterJar about the latest release not having a server.jar to download.
+# USE_SSJ true/false allows you to enable/disable the usage of the ServerStarterJar by the NeoForge project when you are
+#   using Forge. You should not need to touch this: the start script already skips the ServerStarterJar on its own
+#   wherever it cannot launch Forge -- on Minecraft 1.20.2 and 1.20.3, and on Java 24 and newer -- and installs
+#   Forge itself instead, telling you so on the console. Setting this to false does the same thing for every
+#   version, which costs you the hosting-company compatibility the ServerStarterJar provides everywhere else.
+# SSJ_FORGE_ARGS are additional arguments to use when using the Server Starter Jar from the NeoForge project in
+#   combination with the Forge-modloader. Some java versions require explicit allowing of the security manager,
+#   for example.
+# CLEANUP is a list of comma-separated files which get deleted permanently upon calling the start-script with either
+#   the --cleanup argument, or when the script detected a previous run with differing versions/modloaders.
+#   Edit with care!
+#   Edit at your own risk!
+#   Editing might lead to unwanted data corruption or deletion!
+#
+# DO NOT EDIT THE FOLLOWING VARIABLES MANUALLY
+#   - FABRIC_INSTALLER_VERSION
+#   - QUILT_INSTALLER_VERSION
+#   - LEGACYFABRIC_INSTALLER_VERSION
+#
+# Variables are not reloaded between automatic restarts. If you've made changes to your
+#   variables and you want them to take effect, stop the server and script, then
+#   re-run it.
+###
+MINECRAFT_VERSION=1.20.1
+MODLOADER=Forge
+MODLOADER_VERSION=47.4.10
+LEGACYFABRIC_INSTALLER_VERSION=1.1.1
+FABRIC_INSTALLER_VERSION=1.1.2
+QUILT_INSTALLER_VERSION=0.15.1
+RECOMMENDED_JAVA_VERSION=17
+WAIT_FOR_USER_INPUT=true
+JAVA="..\\..\\..\\..\\java\\java-runtime-gamma\\bin\\java"
+JAVA_ARGS="-Xms6G -Xmx10G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1"
+ADDITIONAL_ARGS="-Dlog4j2.formatMsgNoLookups=true"
+SSJ_FORGE_ARGS="-Djava.security.manager=allow"
+RESTART=false
+SKIP_JAVA_CHECK=true
+JDK_VENDOR=temurin
+JABBA_INSTALL_URL_SH=https://github.com/Jabba-Team/jabba/raw/main/install.sh
+JABBA_INSTALL_URL_PS=https://github.com/Jabba-Team/jabba/raw/main/install.ps1
+JABBA_INSTALL_VERSION=0.14.0
+SERVERSTARTERJAR_FORCE_FETCH=true
+SERVERSTARTERJAR_VERSION=latest
+USE_SSJ=false
+CLEANUP="run.sh,run.bat,*installer.jar,*installer.jar.log,server.jar,.mixin.out,local,fabric-server-launcher.jar,fabric-server-launch.jar,.fabric-installer,fabric-installer.jar,legacyfabric-installer.jar,.fabric versions"
+
+###
+# setup-server-files.ps1 reads these, not ServerPackCreator: they fill this folder from the modpack with hard links
+#   instead of copies. ServerPackCreator doesn't write them, so when it generates a new variables.txt, copy this part
+#   to the end of the new one (README.md). Lists are comma-separated; * and ? stand for any text or one character.
+#   Write paths with / (a \ would have to be doubled, as in JAVA).
+# LINK_FOLDERS are the modpack's folders the server needs besides mods: the inclusions of the ServerPackCreator
+#   config. They must not be in CLEANUP, which would delete them at the next version change.
+# COPY_FILES are files of those folders to copy instead: configs the client and the server write differently,
+#   which would flip back and forth while both run on one PC ("... is not correct. Correcting" in the server log).
+# CLIENT_ONLY_MODS are the mods that stay off the server: the ones ServerPackCreator leaves out of its server pack,
+#   with the version replaced by * so that a mod update doesn't need a new entry.
+# SHARED_LIBRARIES is the libraries folder to share through a junction, relative to this folder or absolute. Empty
+#   uses the libraries folder of a launcher folder above the modpack (one with assets and libraries), if any.
+###
+LINK_FOLDERS="config,defaultconfigs,kubejs,ldlib"
+COPY_FILES="config/quark-common.toml"
+CLIENT_ONLY_MODS="BetterAdvancements-*.jar,Controlling-forge-*.jar,createbetterfps-*.jar,CTM-*.jar,CullLessLeaves-Reforged-*.jar,drippyloadingscreen_forge_*.jar,embeddium-*.jar,entityculling-forge-*.jar,fancymenu_forge_*.jar,farsight-*.jar,FpsReducer2-forge-*.jar,ImmediatelyFast-Forge-*.jar,LegendaryTooltips-*.jar,MouseTweaks-forge-*.jar,oculus-mc1.20.1-*.jar,ResourcePackOverrides-*.jar,SimpleDiscordRichPresence-forge-*.jar,tconjei-*.jar,ToastControl-*.jar"
+SHARED_LIBRARIES=""
